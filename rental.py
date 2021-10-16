@@ -1,4 +1,4 @@
-from movie import Movie
+from movie import *
 import logging
 
 
@@ -29,17 +29,17 @@ class Rental:
 
     def get_charge(self):
         amount = 0
-        if self.get_movie().get_price_code() == Movie.REGULAR:
+        if self.get_movie().get_price_code() == PriceCode.regular:
             # Two days for $2, additional days 1.50 each.
             amount = 2.0
             if self.get_days_rented() > 2:
                 amount += 1.5 * (self.get_days_rented() - 2)
-        elif self.get_movie().get_price_code() == Movie.CHILDRENS:
+        elif self.get_movie().get_price_code() == PriceCode.childrens:
             # Three days for $1.50, additional days 1.50 each.
             amount = 1.5
             if self.get_days_rented() > 3:
                 amount += 1.5 * (self.get_days_rented() - 3)
-        elif self.get_movie().get_price_code() == Movie.NEW_RELEASE:
+        elif self.get_movie().get_price_code() == PriceCode.new_release:
             # Straight per day charge
             amount = 3 * self.get_days_rented()
         else:
@@ -49,6 +49,6 @@ class Rental:
         return amount
 
     def get_frequent_rental_points(self):
-        if self.get_movie().get_price_code() == Movie.NEW_RELEASE:
+        if self.get_movie().get_price_code() == PriceCode.new_release:
             return self.get_days_rented()
         return 1
