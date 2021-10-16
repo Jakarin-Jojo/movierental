@@ -18,11 +18,15 @@ class PriceCode(Enum):
         pricing = self.value["price"]  # the enum member's price formula
         return pricing(days)
 
+    def point(self, day: int) -> float:
+        pointing = self.value["frp"]
+        return pointing(day)
+
 
 class Movie:
     """A movie available for rent."""
 
-    def __init__(self, title, price_code):
+    def __init__(self, title, price_code: PriceCode):
         # Initialize a new movie.
         self.title = title
         self.price_code = price_code
