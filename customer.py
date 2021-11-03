@@ -1,3 +1,5 @@
+from typing import List
+
 from rental import Rental
 from movie import *
 
@@ -13,16 +15,16 @@ class Customer:
     def __init__(self, name: str):
         """ Initialize a new customer."""
         self.name = name
-        self.rentals = []
+        self.rentals: List[Rental] = []
 
     def add_rental(self, rental: Rental):
         if rental not in self.rentals:
             self.rentals.append(rental)
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self.name
 
-    def statement(self):
+    def statement(self) -> str:
         """
             Print all the rentals in current period, 
             along with total charges and reward points.
