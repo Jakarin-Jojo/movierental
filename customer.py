@@ -63,10 +63,13 @@ class Customer:
 
 
 if __name__ == "__main__":
+    catalog = MovieCatalog()
     customer = Customer("Edward Snowden")
     print(customer.statement())
-    movie = Movie("Hacker Noon", PriceCode.regular)
-    customer.add_rental(Rental(movie, 2))
-    movie = Movie("CitizenFour", PriceCode.new_release)
-    customer.add_rental(Rental(movie, 3))
+    movie = catalog.get_movie("Arrival")
+    price_code = PriceCode.for_movie(movie)
+    customer.add_rental(Rental(movie, 2, price_code))
+    movie = catalog.get_movie("Eternals")
+    price_code = PriceCode.for_movie(movie)
+    customer.add_rental(Rental(movie, 3, price_code))
     print(customer.statement())
