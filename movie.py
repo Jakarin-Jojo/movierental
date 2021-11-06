@@ -1,4 +1,20 @@
 from typing import List
+import pandas as pd
+
+
+class MovieCatalog:
+    """A movie catalog for renting movies."""
+
+    def __init__(self):
+        self.movie_list = pd.read_csv("movies.csv")
+
+    def get_movie(self, title):
+        """Get a movie from a movie.csv"""
+        movie = self.movie_list[self.movie_list['title'] == title]
+        movie_title = movie.iloc[0]['title']
+        year = int(movie.iloc[0]['year'])
+        genre = movie.iloc[0]['genres'].split('|')
+        return Movie(movie_title, year, genre)
 
 
 class Movie:
@@ -26,4 +42,4 @@ class Movie:
         return False
 
     def __str__(self) -> str:
-        return self.title
+        return self._title
