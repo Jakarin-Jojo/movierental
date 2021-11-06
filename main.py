@@ -2,7 +2,7 @@
 # Create a customer with some movies and print a statement.
 
 from movie import *
-from rental import Rental
+from rental import *
 from customer import Customer
 
 

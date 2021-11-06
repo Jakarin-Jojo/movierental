@@ -1,6 +1,6 @@
 from typing import List
 
-from rental import Rental
+from rental import *
 from movie import *
 
 
