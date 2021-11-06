@@ -1,5 +1,6 @@
 from enum import Enum
 from movie import *
+from datetime import datetime
 import logging
 
 
@@ -24,6 +25,15 @@ class PriceCode(Enum):
         pointing = self.value["frp"]
         return pointing(day)
 
+    @staticmethod
+    def for_movie(movie: Movie):
+        year = datetime.now().year
+        if movie.get_year() == year:
+            return PriceCode.new_release
+        elif 'Children' in movie.get_genre():
+            return PriceCode.childrens
+        return PriceCode.regular
+
 
 class Rental:
     """
@@ -46,7 +56,7 @@ class Rental:
         return self.movie
 
     def get_title(self) -> str:
-        return self.movie.title
+        return self.movie.get_title()
 
     def get_days_rented(self) -> int:
         return self.days_rented
