@@ -6,22 +6,22 @@ class Movie:
 
     def __init__(self, title: str, year: int, genre: List[str]):
         # Initialize a new movie.
-        self.genre = genre
-        self.year = year
-        self.title = title
+        self._genre = genre
+        self._year = year
+        self._title = title
 
     def get_title(self) -> str:
-        return self.title
+        return self._title
 
     def get_year(self):
-        return self.year
+        return self._year
 
     def get_genre(self):
-        return self.genre
+        return self._genre
 
     def is_genre(self, string):
         """Returns: true if the string parameter matches one of the movie’s genre."""
-        if string in self.genre:
+        if string in self._genre:
             return True
         return False
 
