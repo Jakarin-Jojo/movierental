@@ -19,5 +19,11 @@ class Movie:
     def get_genre(self):
         return self.genre
 
+    def is_genre(self, string):
+        """Returns: true if the string parameter matches one of the movie’s genre."""
+        if string in self.genre:
+            return True
+        return False
+
     def __str__(self) -> str:
         return self.title
